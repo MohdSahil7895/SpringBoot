@@ -36,6 +36,7 @@ public class DetailIMPL implements DetailService {
         registerRepository.save(register);
         registerResponseDTO.setMessage("Register Successful");
         return registerResponseDTO;
+//        Register Api Successfully made
     }
 
     @Override
