@@ -31,8 +31,8 @@ dependencies {
 	implementation ("javax.servlet:javax.servlet-api:4.0.1")
 	implementation("io.springfox:springfox-swagger2:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
-	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 
 	implementation ("org.springdoc:springdoc-openapi-ui:1.5.9") // Latest version as of now
 

@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,6 +23,8 @@ public class DetailIMPL implements DetailService {
     private RegisterRepository registerRepository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private MongoTemplate mongoTemplate;
 
     //    @Autowired private Register register;
@@ -32,11 +34,11 @@ public class DetailIMPL implements DetailService {
         RegisterResponseDTO registerResponseDTO = new RegisterResponseDTO();
         register.setName(registerationDTO.getName());
         register.setEmail(registerationDTO.getEmail());
-        register.setPassword(registerationDTO.getPassword());
+        register.setPassword(passwordEncoder.encode(registerationDTO.getPassword()));
         registerRepository.save(register);
         registerResponseDTO.setMessage("Register Successful");
         return registerResponseDTO;
-//        Register Api Successfully made
+
     }
 
     @Override
@@ -45,8 +47,9 @@ public class DetailIMPL implements DetailService {
         Register register = registerRepository.findByEmail(registerationDTO.getEmail());
         if (register == null)
             registerResponseDTO.setMessage("Data Not Present");
-        else if (register.getPassword().equals(registerationDTO.getPassword()))
-            registerResponseDTO.setMessage("Login Successful");
+//        else if (register.getPassword().equals(registerationDTO.getPassword()))
+            else if (passwordEncoder.matches(registerationDTO.getPassword(), register.getPassword()))
+        registerResponseDTO.setMessage("Login Successful");
         else
             registerResponseDTO.setMessage("Wrong Password");
 
