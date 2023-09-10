@@ -52,8 +52,6 @@ public class DetailIMPL implements DetailService {
         registerResponseDTO.setMessage("Login Successful");
         else
             registerResponseDTO.setMessage("Wrong Password");
-
-
         return registerResponseDTO;
     }
 
