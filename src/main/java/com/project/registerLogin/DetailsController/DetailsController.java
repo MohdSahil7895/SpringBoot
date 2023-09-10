@@ -46,7 +46,6 @@ public class DetailsController {
                 return detailService.findAll();
 
         }
-
         @GetMapping("/debug")
         public String debug() {
                 String str = "Debugging is on ";
