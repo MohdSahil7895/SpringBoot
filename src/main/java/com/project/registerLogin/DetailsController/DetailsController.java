@@ -8,8 +8,6 @@ import com.project.registerLogin.Entity.Register;
 import com.project.registerLogin.Repository.RegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,6 @@ public class DetailsController {
         @Autowired
         private MongoTemplate mongoTemplate;
 
-
         @PostMapping(value="getDetail")
         public RegisterResponseDTO getDetail(@Validated @RequestBody RegisterationDTO registerationDTO){
             return detailService.getLoginInfo(registerationDTO);
@@ -49,7 +46,10 @@ public class DetailsController {
                 return detailService.findAll();
 
         }
-//        public RegisterationDTO getInfo(@Validated @RequestBody RegisterationDTO registerationDTO){
-//                return detailService.getSearchInfo(registerationDTO);
-//        }
+
+        @GetMapping("/debug")
+        public String debug() {
+                String str = "Debugging is on ";
+                return str;
+        }
 }
