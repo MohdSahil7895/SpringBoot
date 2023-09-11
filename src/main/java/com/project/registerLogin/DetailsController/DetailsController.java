@@ -46,6 +46,10 @@ public class DetailsController {
                 return detailService.findAll();
 
         }
+        @PostMapping("/reset")
+        public RegisterResponseDTO getReset(@Validated @RequestBody RegisterationDTO registerationDTO){
+                return detailService.getResetPassword(registerationDTO);
+        }
         @GetMapping("/debug")
         public String debug() {
                 String str = "Debugging is on ";

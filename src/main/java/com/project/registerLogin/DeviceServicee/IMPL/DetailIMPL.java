@@ -34,7 +34,8 @@ public class DetailIMPL implements DetailService {
         RegisterResponseDTO registerResponseDTO = new RegisterResponseDTO();
         register.setName(registerationDTO.getName());
         register.setEmail(registerationDTO.getEmail());
-        register.setPassword(passwordEncoder.encode(registerationDTO.getPassword()));
+        register.setPassword(registerationDTO.getPassword());
+//        register.setPassword(passwordEncoder.encode(registerationDTO.getPassword()));
         registerRepository.save(register);
         registerResponseDTO.setMessage("Register Successful");
         return registerResponseDTO;
@@ -63,6 +64,25 @@ public class DetailIMPL implements DetailService {
         return mongoTemplate.find(query, Register.class);
 
     }
+    @Override
+    public RegisterResponseDTO getResetPassword(RegisterationDTO registerationDTO){
+        RegisterResponseDTO registerResponseDTO = new RegisterResponseDTO();
+        Register register = registerRepository.findByEmail(registerationDTO.getEmail());
+        if (register == null)
+            registerResponseDTO.setMessage("Email Not Registered");
+        else if(!registerationDTO.getPassword().equalsIgnoreCase(register.getPassword())){
+            register.setPassword(registerationDTO.getPassword());
+            registerResponseDTO.setMessage("Password reset successful");
+            registerRepository.save(register);}
+        else registerResponseDTO.setMessage("Password should be different");
+
+        return registerResponseDTO;
+    }
+
+
+
+
+
     @Override
     public  List<Register> findAll(){
        return mongoTemplate.findAll(Register.class);

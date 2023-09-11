@@ -16,7 +16,7 @@ import javax.swing.text.ElementIterator;
 public class RegisterationDTO {
 
     private String id;
-    @NotEmpty
+
     @Pattern(regexp = "[a-zA-Z]*", message = "Invalid name format")
     private String name;
 

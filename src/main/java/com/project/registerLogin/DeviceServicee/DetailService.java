@@ -15,5 +15,8 @@ public interface DetailService {
     List<Register> findByname(@PathVariable(value = "name") String name);
 
     List<Register> findAll();
+
+    RegisterResponseDTO getResetPassword(RegisterationDTO registerationDTO);
+
 //    RegisterationDTO getSearchInfo(RegisterationDTO registerationDTO);
 }

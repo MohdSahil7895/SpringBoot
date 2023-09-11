@@ -22,7 +22,7 @@ public class Register {
     @GeneratedValue()
     private String id;
 
-    @Column(name = "Name",length = 20)
+    @Column(name = "Name")
     private String name;
 
 
