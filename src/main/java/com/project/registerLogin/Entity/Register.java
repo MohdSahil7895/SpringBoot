@@ -32,12 +32,14 @@ public class Register {
 
     @Column(name = "Password",length = 15)
     private String password;
-
-    public Register(String id, String name, String email, String password) {
+    @Column(name = "reset_token",length = 15)
+    private String resetToken;
+    public Register(String id, String name, String email, String password, String setResetToken) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.resetToken = setResetToken;
     }
 
     public Register() {
@@ -50,6 +52,8 @@ public class Register {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", setResetToken='" + resetToken + '\'' +
                 '}';
     }
+
 }

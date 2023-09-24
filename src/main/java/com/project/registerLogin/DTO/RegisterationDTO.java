@@ -17,7 +17,7 @@ public class RegisterationDTO {
 
     private String id;
 
-    @Pattern(regexp = "[a-zA-Z]*", message = "Invalid name format")
+    @Pattern(regexp = "[a-zA-Z ]*", message = "Invalid name format")
     private String name;
 
     @Email

@@ -32,7 +32,8 @@ dependencies {
 	implementation("io.springfox:springfox-swagger2:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 	implementation("org.springframework.boot:spring-boot-starter-security")
-
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-mail")
 
 	implementation ("org.springdoc:springdoc-openapi-ui:1.5.9") // Latest version as of now
 

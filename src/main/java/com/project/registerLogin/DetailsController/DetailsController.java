@@ -28,7 +28,7 @@ public class DetailsController {
         @Autowired
         private MongoTemplate mongoTemplate;
 
-        @PostMapping(value="getDetail")
+        @PostMapping(value="register")
         public RegisterResponseDTO getDetail(@Validated @RequestBody RegisterationDTO registerationDTO){
             return detailService.getLoginInfo(registerationDTO);
         }
@@ -55,4 +55,14 @@ public class DetailsController {
                 String str = "Debugging is on ";
                 return str;
         }
+
+        @PostMapping("/forgotEmail")
+        public RegisterResponseDTO getForgotEmail(@Validated @RequestBody RegisterationDTO registerationDTO){
+                return detailService.getForgotPasswordEmail(registerationDTO);
+        }
+//        @PostMapping("/")
+//        public RegisterResponseDTO getForgotEmail(@Validated @RequestBody RegisterationDTO registerationDTO){
+//                return detailService.getForgotPasswordEmail(registerationDTO);
+//        }
+
 }

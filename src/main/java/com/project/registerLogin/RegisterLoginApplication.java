@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @EnableAsync
@@ -15,6 +16,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableMongoAuditing
 @EntityScan
 @EnableMongoRepositories
+@RestController
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 
 public class RegisterLoginApplication {

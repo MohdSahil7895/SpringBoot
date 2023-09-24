@@ -18,5 +18,6 @@ public interface DetailService {
 
     RegisterResponseDTO getResetPassword(RegisterationDTO registerationDTO);
 
-//    RegisterationDTO getSearchInfo(RegisterationDTO registerationDTO);
+    RegisterResponseDTO getForgotPasswordEmail(RegisterationDTO registerationDTO);
+
 }
