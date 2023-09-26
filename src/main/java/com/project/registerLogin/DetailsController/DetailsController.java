@@ -46,8 +46,10 @@ public class DetailsController {
                 return detailService.findAll();
 
         }
-        @PostMapping("/reset")
-        public RegisterResponseDTO getReset(@Validated @RequestBody RegisterationDTO registerationDTO){
+        @PostMapping("/reset/{token}${id}")
+        public RegisterResponseDTO getReset(@PathVariable (value = "resetToken") String token,@PathVariable (value = "id") String id,
+                                            @Validated @RequestBody RegisterationDTO registerationDTO)
+                                            {
                 return detailService.getResetPassword(registerationDTO);
         }
         @GetMapping("/debug")

@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface RegisterRepository extends MongoRepository<Register,String> {
 
     Register findByEmail(String email);
+    Register findByID(String id);
+
 }

@@ -77,9 +77,9 @@ public class DetailIMPL implements DetailService {
     @Override
     public RegisterResponseDTO getResetPassword(RegisterationDTO registerationDTO){
         RegisterResponseDTO registerResponseDTO = new RegisterResponseDTO();
-        Register register = registerRepository.findByEmail(registerationDTO.getEmail());
+        Register register = registerRepository.findByID(registerationDTO.getId());
         if (register == null)
-            registerResponseDTO.setMessage("Email Not Registered");
+            registerResponseDTO.setMessage("Invalid Token");
 
         else if(!registerationDTO.getPassword().equalsIgnoreCase(register.getPassword())){
             register.setPassword(registerationDTO.getPassword());
@@ -100,11 +100,12 @@ public class DetailIMPL implements DetailService {
     }
         // Generate a reset token and send it via email
         register.setResetToken(generateResetToken());
+
         registerRepository.save(register);
         sendPasswordResetEmail(registerationDTO.getEmail(), register.getResetToken(),register.getId());
 
         // You may also want to save the resetToken and email in your database for verification later.
-        registerResponseDTO.setMessage("Password reset email sent successfully");
+        registerResponseDTO.setMessage("Email to reset password is sent successfully");
         return registerResponseDTO;
     }
 
@@ -112,17 +113,14 @@ public class DetailIMPL implements DetailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toEmail);
         message.setSubject("Password Reset");
-        message.setText("Your password reset token is: " + "http://localhost:3000/" + resetToken +"/"+ id);
+//        message.setText("Your password reset token is: " + "http://localhost:3000/reset/" + resetToken);
+        message.setText("Your password reset token is: " + "http://localhost:3000/reset/" + resetToken +"/"+ id);
         System.out.println("Email Sent Successfully");
         javaMailSender.send(message);
     }
     private String generateResetToken() {
 
         return UUID.randomUUID().toString();
-        // Generate a unique reset token (you can use UUID or any other method)
-        // and return it.
-        // Example: return UUID.randomUUID().toString();
-//        return "your-reset-token";
     }
 
 
